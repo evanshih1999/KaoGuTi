@@ -7,7 +7,7 @@ import HaveLogin from '../Components/HaveLogin';
 
 
 const LoginPage =({isLogin, memberName,setMemberName, setIsLogin, setMemberMail}) =>{
-	
+
 	const [loginOrRegister,setLoginOrRegister] = useState("login")
 	return (
 		<>

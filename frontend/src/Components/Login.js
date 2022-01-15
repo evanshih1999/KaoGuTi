@@ -134,15 +134,11 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 							onChange={onChange_Password}
 						/>
 					</Form.Item>
-					<Form.Item>
+					{/* <Form.Item>
 						<Form.Item name="remember" valuePropName="checked" noStyle>
 							<Checkbox>記住我</Checkbox>
 						</Form.Item>
-
-						{/* <a className="login-form-forgot" href="">
-				忘記密碼
-				</a> */}
-					</Form.Item>
+					</Form.Item> */}
 
 					<Form.Item>
 						<Space>

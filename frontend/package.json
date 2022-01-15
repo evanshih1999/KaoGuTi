@@ -30,6 +30,7 @@
     "react-mathjax": "^1.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-select": "^5.2.2",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1",
     "tachyons": "^4.12.0",

@@ -5,7 +5,6 @@ import moment from 'moment';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import instance from '../api';
 import Replyicon from './Replyicon';
-import Markdown from './Markdown';
 import MDEditor from '@uiw/react-md-editor';
 import katex from 'katex';
 import 'katex/dist/katex.css'
@@ -96,37 +95,105 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
         <>
             <div className='problemContent' >
                 <List.Item.Meta
-                    avatar={<Avatar src={`https://joeschmoe.io/api/v1/${publisher}`} />}
-                    title={<a style={{ textDecorationLine: 'underline' }} onClick={() => pressProblem(item.problem_id)} >{title}</a>}
+                    avatar={<Avatar src={`https://joeschmoe.io/api/v1/${publisher}`} style={{height: "80px", width: "80px"}}/>}
+                    title={<a style={{ height: "25px", textDecorationLine: 'underline', display: "flex", justifyContent: "left", frontSize: "30" }} onClick={() => pressProblem(item.problem_id)}>
+                                <h2>
+                                    {title}
+                                </h2>
+                            </a>}
                     description={(
-                        <>
-                            <>{publisher}</>
-                            <> </>
-                            <> --</>
-                            <> </>
+                        <div style={{display: "flex", justifyContent: "center", alignItems:"left", flexDirection:"column"}}>
+                            <div style={{display: "flex", justifyContent: "left", height: "20px"}}>
+                                <p>Teacher: {teacher}</p>
+                            </div>
+                            <div style={{display: "flex", justifyContent: "left"}}>
+                                <>{publisher}</>
+                                <> </>
+                                <>  -- </>
+                                <> </>
 
-                            <Tooltip title={moment(time).format('YYYY-MM-DD HH:mm:ss')}>
-                                <span>{moment(time).fromNow()}</span>
-                            </Tooltip>
-
-
-                        </>)
-                    }
+                                <Tooltip title={moment(time).format('YYYY-MM-DD HH:mm:ss')}>
+                                    <span>{moment(time).fromNow()}</span>
+                                </Tooltip>
+                            </div>
+                        </div>
+                    )}
 
                 />
-
-                {tags.map((tag) => <Tag>{tag}</Tag>)}
-
+                <div style={{display: "flex", justifyContent: "left", alignItems:"left", flexDirection:"column"}}>
+                    <div>
+                        <MDEditor
+                            value={description}
+                            previewOptions={{
+                                components: {
+                                code: ({ inline, children = [], className, ...props }) => {
+                                    const txt = children[0] || '';
+                                    if (inline) {
+                                    if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
+                                        const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
+                                        throwOnError: false,
+                                        });
+                                        return <code dangerouslySetInnerHTML={{ __html: html }} />;
+                                    }
+                                    return <code>{txt}</code>;
+                                    }
+                                    if (
+                                    typeof txt === 'string' &&
+                                    typeof className === 'string' &&
+                                    /^language-katex/.test(className.toLocaleLowerCase())
+                                    ) {
+                                    const html = katex.renderToString(txt, {
+                                        throwOnError: false,
+                                    });
+                                    return <code dangerouslySetInnerHTML={{ __html: html }} />;
+                                    }
+                                    return <code className={String(className)}>{txt}</code>;
+                                },
+                                },
+                            }}
+                            preview="preview"
+                            hideToolbar={true}
+                        />
+                    </div>
+                    <br></br>
+                    <div style={{display: "flex", justifyContent: "left", flexDirection:"row"}}>
+                        {tags.map((tag) => <Tag>{tag}</Tag>)}                    
+                    </div>
+                </div>
             </div>
 
 
-            <Modal className='poroblemCommentModal' visible={problemModalFlag} onCancel={e => setProblemModalFlag(false)} onOk={e => setProblemModalFlag(false)} cancelButtonProps={{ style: { display: 'none' } }}>
-                <>
-                    <Comment
-                        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-                        author={<a style={{ fontSize: "20px" }}>{publisher}</a>}
-                        avatar={<Avatar src={`https://joeschmoe.io/api/v1/${publisher}`} alt={publisher} />}
-                        content={
+            <Modal className='poroblemCommentModal' width={900} visible={problemModalFlag} onCancel={e => setProblemModalFlag(false)} onOk={e => setProblemModalFlag(false)} cancelButtonProps={{ style: { display: 'none' } }}>
+                <>  
+                    <div>
+                        <List.Item.Meta
+                            avatar={<Avatar src={`https://joeschmoe.io/api/v1/${publisher}`} style={{height: "80px", width: "80px"}}/>}
+                            title={<a style={{ height: "25px", textDecorationLine: 'underline', display: "flex", justifyContent: "left", frontSize: "30" }} onClick={() => pressProblem(item.problem_id)}>
+                                        <h2>
+                                            {title}
+                                        </h2>
+                                    </a>}
+                            description={(
+                                <div style={{display: "flex", justifyContent: "center", alignItems:"left", flexDirection:"column", height: "80px"}}>
+                                    <div style={{display: "flex", justifyContent: "left", height: "20px"}}>
+                                        <p>Teacher: {teacher}</p>
+                                    </div>
+                                    <div style={{display: "flex", justifyContent: "left"}}>
+                                        <>{publisher}</>
+                                        <> </>
+                                        <>  -- </>
+                                        <> </>
+
+                                        <Tooltip title={moment(time).format('YYYY-MM-DD HH:mm:ss')}>
+                                            <span>{moment(time).fromNow()}</span>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                            )}
+                        />
+                    </div>
+                    <div style={{display: "flex", justifyContent: "left", alignItems:"left", flexDirection:"column"}}>
+                        <div>
                             <MDEditor
                                 value={description}
                                 previewOptions={{
@@ -159,14 +226,12 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
                                 preview="preview"
                                 hideToolbar={true}
                             />
-                        }
-                        datetime={(
-                            <Tooltip title={moment(time).format('YYYY-MM-DD HH:mm:ss')}>
-                                <span>{moment(time).fromNow()}</span>
-                            </Tooltip>
-                        )}
-                    >
-                    </Comment>
+                        </div>
+                        <br></br>
+                        <div style={{display: "flex", justifyContent: "left", flexDirection:"row"}}>
+                            {tags.map((tag) => <Tag>{tag}</Tag>)}                    
+                        </div>
+                    </div>
                     <List
                         className="comment-list"
                         header={`${replyList.length} replies`}

@@ -52,10 +52,19 @@ const Navbare = ({memberName, isLogin, setMemberName, setIsLogin}) => {
                 data: { msg },
             } = await instance.post('/user/logout');
             console.log(msg);
-            displayStatus({
-                type: "success",
-                msg: msg,
-            });
+            if (msg == 'Wrong cookie token') {
+                displayStatus({
+                    type: "error",
+                    msg: msg,
+                });
+            }
+            else {
+                displayStatus({
+                    type: "success",
+                    msg: msg,
+                });
+            }
+            
         }
         catch (error) {
             // console.error(error)

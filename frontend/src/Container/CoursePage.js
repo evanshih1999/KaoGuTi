@@ -10,8 +10,6 @@ const CoursePage = ({courseName, isLogin, memberName}) => {
 	const [teacher, setTeacher] = useState("");
 	const [tags, setTags] = useState([]);
 
-	
-
 	useEffect(async () => {
 		if (courseName) {
 			await handleSearchCourse()
@@ -61,9 +59,9 @@ const CoursePage = ({courseName, isLogin, memberName}) => {
 			{
 				courseName
 					?
-					<>
+					<div style={{display: "flex", justifyContent: "center"}}>
 						<ProblemListView courseProblemData={courseProblemData} isLogin={isLogin} memberName={memberName}/>
-					</>
+					</div>
 					:
 					null
 			}

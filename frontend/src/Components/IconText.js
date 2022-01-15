@@ -86,7 +86,7 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id }) => {
             // setshowModal(false)
         }
         if (icon == MessageOutlined) {
-            setpressColor(prev => !prev)
+            // setpressColor(prev => !prev)
 
         }
         // setshowModal(prev => !prev)

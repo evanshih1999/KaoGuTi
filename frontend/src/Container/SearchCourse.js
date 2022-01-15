@@ -31,6 +31,11 @@ function SearchCourse({setCourseName}) {
 	return (
 		<div className="tc bg-balck ma0 pa4 min-vh-100">
 			<Search details={courses} setCourseName={setCourseName}/>
+            <footer>
+                <div>
+                    <b>Copyright © 2022 NTU KaoGuTi TEAM.</b>  All rights reserved.
+                </div>
+            </footer>
 		</div>
 	);
 }
