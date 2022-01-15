@@ -2,13 +2,13 @@ import express from 'express'
 import nodemailer from 'nodemailer'
 import dotenv from "dotenv-defaults"
 import bcrypt from "bcrypt"
-import User from '../models/User'
-import Vcode from '../models/Vcode'
+import User from '../models/User.js'
+import Vcode from '../models/Vcode.js'
 import { v4 as uuidv4 } from 'uuid'
-import Course from '../models/Course'
-import Problem from '../models/Problem'
-import Answer from '../models/Answer'
-import Cookie from '../models/Cookie'
+import Course from '../models/Course.js'
+import Problem from '../models/Problem.js'
+import Answer from '../models/Answer.js'
+import Cookie from '../models/Cookie.js'
 
 dotenv.config();
 
