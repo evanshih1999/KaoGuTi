@@ -32,7 +32,7 @@ function App() {
       localStorage.setItem(LOCALSTORAGE_KEY, memberName);
     }
     else {
-      localStorage.setItem(LOCALSTORAGE_KEY, null);
+      localStorage.setItem(LOCALSTORAGE_KEY, '');
     }
   }, [isLogin, memberName]);
 
