@@ -21,7 +21,7 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 				msg: msg,
 			});
 			setIsLogin(true);
-			setMemberName(values.username);
+			setMemberName(username);
 		}
 		else {
 			// alert(msg)
@@ -71,7 +71,6 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
                     username,
                     password: hash
                 });
-                setMemberName(username)
 				return msg;
             }
             catch (error) {
@@ -150,11 +149,9 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 
 					<Form.Item>
 						<Space>
-							<Link to="/">
-								<Button type="primary" htmlType="submit" className="login-form-button" onClick={Submit}>
-									登入
-								</Button>
-							</Link>
+							<Button type="primary" htmlType="submit" className="login-form-button" onClick={Submit}>
+								登入
+							</Button>
 							<p>
 							</p>
 							<a onClick={onClickRegister}> 沒有帳號?馬上註冊!</a>
