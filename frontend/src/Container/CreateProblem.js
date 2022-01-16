@@ -239,11 +239,19 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
 
 					<Form.Item>
 						<Space>
+                        {(courseName === summitCourseName )?
                         <Link to="/problem">
-                            <Button type={"primary"} onClick={submit}>
+                            <Button type={"primary"}onClick={submit}>
                                 Submit
                             </Button>
                         </Link>
+                        :
+                        <Link to="/">
+                            <Button type={"primary"}onClick={submit}>
+                                Submit
+                            </Button>
+                        </Link>
+                        }
 						</Space>
 					</Form.Item>
 
