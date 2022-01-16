@@ -251,7 +251,7 @@ const Register = ( {setLoginOrRegister} ) => {
           <Input onChange={onChangeNickname}/>
         </Form.Item>
 
-        <Form.Item label="驗證碼"  tooltip="點擊右側獲取驗證碼後，請去第一欄填的信箱收信" extra="請勿使用 @ntu.edu.tw 信箱註冊\n(已被計中封鎖了)">
+        <Form.Item label="驗證碼"  tooltip="點擊右側獲取驗證碼後，請去第一欄填的信箱收信" extra="若ntu mail未收到信，請改用其他email">
           <Row gutter={8}>
             <Col span={12}>
               <Form.Item
