@@ -151,7 +151,7 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 					<Form.Item>
 						<Space>
 							<Link to="/">
-								<Button type="primary" htmlType="submit" className="login-form-button" onClick>
+								<Button type="primary" htmlType="submit" className="login-form-button" onClick={Submit}>
 									登入
 								</Button>
 							</Link>
