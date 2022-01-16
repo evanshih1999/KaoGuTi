@@ -10,12 +10,13 @@ import { Card } from 'antd';
 function Search({ details, setCourseName }) {
 
   const [searchField, setSearchField] = useState("");
-  console.log(details)
+  // console.log(details)
   const filteredCourses = details.filter(
     person => {
       return (
         person
         .course_name
+        .replace(/ /g, "")
         .includes(searchField.toLowerCase())
         // ||
         // person

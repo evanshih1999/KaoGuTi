@@ -14,7 +14,7 @@ const options = [
 const animatedComponents = makeAnimated();
 
 export default function AnimatedMulti() {
-  console.log("hi")
+  // console.log("hi")
 
   return (
     <Select

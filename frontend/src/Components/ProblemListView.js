@@ -51,7 +51,7 @@ const ProblemListView = ({ courseProblemData, isLogin, memberName, deleteion, se
                         style={{ width: '50%' }}
                         options={options}
                         onChange={(value)=>{
-                            console.log(value)
+                            // console.log(value)
 
                             if(value.length === 0){
                                 setFilterCourseProblemData([...courseProblemData])
@@ -78,7 +78,7 @@ const ProblemListView = ({ courseProblemData, isLogin, memberName, deleteion, se
                             // }
                             for(let i = 0; i < courseProblemData.length; i++){
                                 for(let k = 0; k < value.length; k++){
-                                    if(courseProblemData[i].title.includes(value[k])){
+                                    if(courseProblemData[i].title.replace(/ /g, "").includes(value[k])){
                                         if (!filterData.includes(courseProblemData[i])) filterData.push(courseProblemData[i])
                                     }
                                     else if(courseProblemData[i].teacher.includes(value[k])){
@@ -108,7 +108,7 @@ const ProblemListView = ({ courseProblemData, isLogin, memberName, deleteion, se
                     size="large"
                     pagination={{
                         onChange: page => {
-                            console.log(page);
+                            // console.log(page);
                         },
                         pageSize: 8,
                     }}

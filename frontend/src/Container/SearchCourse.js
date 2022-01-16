@@ -13,18 +13,18 @@ function SearchCourse({setCourseName}) {
 
 	const handleSearch = async ( course_name ) => {
         try {
-            console.log(course_name);
+            //console.log(course_name);
             const { data } = await instance.get('/search', {
                 params: {
                     course_name
                 },
             });
-            console.log(data)
+            //console.log(data)
 			setCourses(data);
         } 
         catch (error) {
             // console.error(error)
-            console.log(error.response.data.msg)
+            //console.log(error.response.data.msg)
         }
     }
 

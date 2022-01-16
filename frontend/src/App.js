@@ -20,7 +20,7 @@ const LOCALSTORAGE_KEY_COURSE = "save-course";
 
 function App() {
 
-  const savedMe = localStorage.getItem(LOCALSTORAGE_KEY)||'';
+  const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
   const savedCourse = localStorage.getItem(LOCALSTORAGE_KEY_COURSE);
   const [isLogin, setIsLogin] = useState(false);
   const [memberName, setMemberName] = useState(savedMe || '');
@@ -32,7 +32,7 @@ function App() {
       localStorage.setItem(LOCALSTORAGE_KEY, memberName);
     }
     else {
-      localStorage.setItem(LOCALSTORAGE_KEY, '');
+      localStorage.setItem(LOCALSTORAGE_KEY, null);
     }
   }, [isLogin, memberName]);
 
@@ -41,7 +41,7 @@ function App() {
   }, [courseName]);
   
   useEffect(() => {
-    if (!savedMe) {
+    if (savedMe) {
       setIsLogin(true);
     }
   }, []);

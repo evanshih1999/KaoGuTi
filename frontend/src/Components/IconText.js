@@ -45,7 +45,7 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id, deleteion
         }
         catch (error) {
             // console.error(error)
-            console.log(error.response.data.msg)
+            // console.log(error.response.data.msg)
             displayStatus({
 				type: "error",
 				msg: error.response.data.msg,
@@ -61,7 +61,7 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id, deleteion
                 username: memberName,
                 problem_id
             });
-            console.log(msg);
+            // console.log(msg);
             displayStatus({
 				type: "success",
 				msg: msg,
@@ -69,7 +69,7 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id, deleteion
         }
         catch (error) {
             // console.error(error)
-            console.log(error.response.data.msg)
+            // console.log(error.response.data.msg)
             displayStatus({
 				type: "error",
 				msg: error.response.data.msg,
@@ -79,13 +79,13 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id, deleteion
     
     const pressButton = async () => {
 
-        console.log('pressButton')
-        console.log('user_likes', user_likes)
-        console.log('iconNum', iconNum)
+        // console.log('pressButton')
+        // console.log('user_likes', user_likes)
+        // console.log('iconNum', iconNum)
 
 
         if (memberName == '') {
-            console.log('plz login')
+            // console.log('plz login')
             message.info('請先登入ㄛ')
             return
         }

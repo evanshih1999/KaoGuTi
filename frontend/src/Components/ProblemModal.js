@@ -71,12 +71,12 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
                     problem_id: item.problem_id
                 }
             });
-            console.log(data)
+            // console.log(data)
             return data
         } 
         catch (error) {
             // console.error(error)
-            console.log(error.response.data.msg)
+            // console.log(error.response.data.msg)
             displayStatus({
 				type: "error",
 				msg: error.response.data.msg,
@@ -102,8 +102,8 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
 	}
 
     const pressProblem =  (problem_id) => {
-        console.log("Hiiii")
-        console.log(replyList)
+        // console.log("Hiiii")
+        // console.log(replyList)
         setProblemModalFlag(prev => !prev)
     }
 
@@ -334,7 +334,7 @@ const CommentBlock = ({ problem_id, memberName, setreplyList, newReply, setNewRe
     const submitReply = async () => {
         await handleCreateAnswer();
         setNewReply(newReply+1);
-        console.log(memberName)
+        // console.log(memberName)
         setreplyVal("")
     }
 
@@ -364,7 +364,7 @@ const CommentBlock = ({ problem_id, memberName, setreplyList, newReply, setNewRe
                     content: replyVal,
                     username: memberName
                 });
-                console.log(msg);
+                // console.log(msg);
                 displayStatus({
                     type: "success",
                     msg: msg,
@@ -373,7 +373,7 @@ const CommentBlock = ({ problem_id, memberName, setreplyList, newReply, setNewRe
             }
             catch (error) {
                 // console.error(error)
-                console.log(error.response.data.msg)
+                // console.log(error.response.data.msg)
                 displayStatus({
                     type: "error",
                     msg: error.response.data.msg,

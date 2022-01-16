@@ -54,7 +54,7 @@ router.post('/user/set_verify_code', async (req, res) => {
         subject: 'KaoGuTi Website verification code',
         text: 'Welcome to KaoGuTi Website.\nYour verification code is: ' + vcode + 
             '\nEnjoy your journey!\nIn case of any problem,\ncontact us via ' + process.env.EMAIL_ADDRESS +
-            '\nThank you for the support!\n\n歡迎使用KaoGuTi網站\n您的驗證碼為: ' + vcode +
+            '\nThank you for the support!\n\n歡迎使用KaoGuTi網站，\n您的驗證碼為: ' + vcode +
             '\n祝您有個美好的體驗!\n有任何問題，\n請透過' + process.env.EMAIL_ADDRESS +
             '與我們聯絡。\n謝謝您的支持!'
     }
@@ -213,7 +213,6 @@ router.post('/create/answer', async (req, res) => {
     const problem_publisher = problem.publisher
     if (problem_publisher!==username) {
         const email = (await User.findOne({ username: problem_publisher })).email
-        console.log(email)
     
         var transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
@@ -231,8 +230,8 @@ router.post('/create/answer', async (req, res) => {
                 ' has received a new answer from ' + username + 
                 '!\nYou can check it on our website at https://kaoguti.herokuapp.com/. \nIn case of any problem,\ncontact us via ' + 
                 process.env.EMAIL_ADDRESS + '\nThank you for the support!\n' + problem_publisher + 
-                '先生/小姐您好\n您的問題' + problem.title + '獲得了' + username + 
-                '的一則答覆\n您可以在我們的網站 https://kaoguti.herokuapp.com/ 上查看\n有任何問題，\n請透過' + 
+                '先生/小姐您好，\n您的問題' + problem.title + '獲得了' + username + 
+                '的一則答覆，\n您可以在我們的網站 https://kaoguti.herokuapp.com/ 上查看。\n有任何問題，\n請透過' + 
                 process.env.EMAIL_ADDRESS + '與我們聯絡。\n謝謝您的支持!'
         }
           

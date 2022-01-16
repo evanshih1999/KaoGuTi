@@ -16,7 +16,7 @@ const Register = ( {setLoginOrRegister} ) => {
 
   const submit = async (values) => {
     let msg = await handleRegister();
-		console.log(msg)
+		// console.log(msg)
 		if (msg === "User created") {
 			displayStatus({
 				type: "success",
@@ -40,7 +40,7 @@ const Register = ( {setLoginOrRegister} ) => {
       for (let i=0; i<hashDigest.words.length; i++) {
         hash += hashDigest.words[i].toString()
       }
-      console.log(hash)
+      // console.log(hash)
       try {
         const {
           data: { msg },
@@ -50,12 +50,12 @@ const Register = ( {setLoginOrRegister} ) => {
           username: nickname,
           password: hash
         });
-        console.log(msg);
+        // console.log(msg);
         return msg
       }
       catch (error) {
         // console.error(error)
-        console.log(error.response.data.msg)
+        // console.log(error.response.data.msg)
         return error.response.data.msg
       }
     }
@@ -115,12 +115,12 @@ const Register = ( {setLoginOrRegister} ) => {
         } = await instance.post('/user/set_verify_code', {
           mail: email
         });
-        console.log(msg);
+        // console.log(msg);
         return msg
       }
       catch (error) {
         // console.error(error)
-        console.log(error.response.data.msg)
+        // console.log(error.response.data.msg)
         return error.response.data.msg
       } 
     }

@@ -27,14 +27,14 @@ const AnswerDeleteIcon = ({memberName, answer_id, deleteAnswer, setDeleteAnswer}
 
     const handleDeleteAnswer = async () => {
         try {
-            console.log("sdfeijfeijkoe")
+            // console.log("sdfeijfeijkoe")
             const {
                 data: { msg },
             } = await instance.post('/hide/answer', {
                 username: memberName,
                 answer_id
             });
-            console.log(msg);
+            // console.log(msg);
             displayStatus({
 				type: "success",
 				msg: msg,
@@ -51,7 +51,7 @@ const AnswerDeleteIcon = ({memberName, answer_id, deleteAnswer, setDeleteAnswer}
     const pressButton = async () => {
 
         if (memberName == '') {
-            console.log('plz login')
+            // console.log('plz login')
             message.info('請先登入ㄛ')
             return
         }

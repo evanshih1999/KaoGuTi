@@ -13,7 +13,7 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 
 	const Submit = async (values) => {
 		let msg = await handleLogin();
-		console.log(msg)
+		// console.log(msg)
 		if (msg === "Success!") {
 			displayStatus({
 				type: "success",
@@ -62,7 +62,7 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 			for (let i=0; i<hashDigest.words.length; i++) {
 				hash += hashDigest.words[i].toString()
 			}
-			console.log(hash)
+			// console.log(hash)
 			try {
                 const {
                     data: { msg },
@@ -70,12 +70,12 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
                     username,
                     password: hash
                 });
-                console.log(msg);
+                // console.log(msg);
 				return msg;
             }
             catch (error) {
                 // console.error(error)
-                console.log(error.response.data.msg)
+                // console.log(error.response.data.msg)
 				return error.response.data.msg
             }
         }

@@ -52,6 +52,7 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
 
     const handleCreateProblem = async () => {
         if (title.length > 0 && content.length > 0) {
+            setCourseName(setSummitCourseName)
             try {
                 const {
                     data: { msg },
@@ -64,8 +65,7 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
                     answer,
                     tags
                 });
-                console.log(msg);
-                setCourseName(setSummitCourseName)
+                // console.log(msg);
                 displayStatus({
                     type: "success",
                     msg: msg,
@@ -73,7 +73,7 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
             }
             catch (error) {
                 // console.error(error)
-                console.log(error.response.data.msg)
+                // console.log(error.response.data.msg)
                 displayStatus({
                     type: "error",
                     msg: error.response.data.msg,
@@ -154,7 +154,7 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
                         tagRender={tagRender}
                         style={{ width: '100%' }}
                         options={options}
-                        onChange={(value)=>{console.log(value); setTags([...value])}}
+                        onChange={(value)=>{setTags([...value])}}
                     >
 
                     {children}
