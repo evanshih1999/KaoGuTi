@@ -3,6 +3,7 @@ import { Form,  Input,  Row, Col,  Checkbox,  Button,  message,} from 'antd';
 import { useState } from "react";
 // import {setVerifyCode, createUser} from "../api/User"
 import instance from "../api";
+import sha256 from 'crypto-js/sha256'
 
 
 const Register = ( {setLoginOrRegister} ) => {
@@ -33,6 +34,7 @@ const Register = ( {setLoginOrRegister} ) => {
 	
   const handleRegister = async () => {
     if (email.length > 0 && captcha.length > 0 && nickname.length > 0 && password.length > 0) {
+      const hashDigest = sha256(password)
       try {
         const {
           data: { msg },
@@ -40,7 +42,7 @@ const Register = ( {setLoginOrRegister} ) => {
           mail: email,
           vcode: captcha,
           username: nickname,
-          password
+          password: hashDigest
         });
         console.log(msg);
         return msg
@@ -243,7 +245,7 @@ const Register = ( {setLoginOrRegister} ) => {
           <Input onChange={onChangeNickname}/>
         </Form.Item>
 
-        <Form.Item label="驗證碼"  tooltip="點擊右側獲取驗證碼後，請去第一欄填的信箱收信" extra="請使用 @ntu.edu.tw 信箱註冊">
+        <Form.Item label="驗證碼"  tooltip="點擊右側獲取驗證碼後，請去第一欄填的信箱收信" extra="請勿使用 @ntu.edu.tw 信箱註冊(已被計中封鎖了)">
           <Row gutter={8}>
             <Col span={12}>
               <Form.Item

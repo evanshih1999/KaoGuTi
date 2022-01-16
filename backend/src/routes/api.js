@@ -52,7 +52,11 @@ router.post('/user/set_verify_code', async (req, res) => {
         from: process.env.EMAIL_ADDRESS,
         to: email,
         subject: 'KaoGuTi Website verification code',
-        text: 'Your verification code is: ' + vcode
+        text: 'Welcome to KaoGuTi Website.\nYour verification code is: ' + vcode + 
+            '\nEnjoy your journey!\nIn case of any problem,\ncontact us via' + process.env.EMAIL_ADDRESS +
+            '\nThank you for the support!\n\n歡迎使用KaoGuTi網站\n您的驗證碼為:' + vcode +
+            '\n祝您有個美好的體驗!\n有任何問題，請透過' + process.env.EMAIL_ADDRESS +
+            '與我們聯絡。\n謝謝您的支持!'
     }
       
     transporter.sendMail(mailOptions, function(error, info){
