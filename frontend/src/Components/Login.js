@@ -5,6 +5,7 @@ import { link, Redirect } from '@uiw/react-md-editor';
 // import { getMail, loginCheck } from '../api/User';
 import instance from '../api';
 import sha256 from 'crypto-js/sha256'
+import { Link } from 'react-router-dom';
 
 
 const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, islogin }) => {
@@ -149,9 +150,11 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
 
 					<Form.Item>
 						<Space>
-							<Button type="primary" htmlType="submit" className="login-form-button" onClick>
-								登入
-							</Button>
+							<Link to="/">
+								<Button type="primary" htmlType="submit" className="login-form-button" onClick>
+									登入
+								</Button>
+							</Link>
 							<p>
 							</p>
 							<a onClick={onClickRegister}> 沒有帳號?馬上註冊!</a>
