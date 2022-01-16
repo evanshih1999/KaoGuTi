@@ -4,6 +4,7 @@ import { useState } from "react";
 // import {setVerifyCode, createUser} from "../api/User"
 import instance from "../api";
 import sha256 from 'crypto-js/sha256'
+import { stripIgnoredCharacters } from "graphql";
 
 
 const Register = ( {setLoginOrRegister} ) => {
@@ -35,6 +36,11 @@ const Register = ( {setLoginOrRegister} ) => {
   const handleRegister = async () => {
     if (email.length > 0 && captcha.length > 0 && nickname.length > 0 && password.length > 0) {
       const hashDigest = sha256(password)
+      let hash = ''
+      for (let i=0; i<hashDigest.words.length; i++) {
+        hash += hashDigest.words[i].toString()
+      }
+      console.log(hash)
       try {
         const {
           data: { msg },
@@ -42,7 +48,7 @@ const Register = ( {setLoginOrRegister} ) => {
           mail: email,
           vcode: captcha,
           username: nickname,
-          password: hashDigest
+          password: hash
         });
         console.log(msg);
         return msg

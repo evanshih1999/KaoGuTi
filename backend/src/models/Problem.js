@@ -11,6 +11,7 @@ const ProblemSchema = new Schema({
     publisher: String,
     likes: [String],
     time: Date,
+    show: Boolean
 });
 const Problem = mongoose.model('Problem', ProblemSchema);
 
