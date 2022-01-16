@@ -3,7 +3,6 @@ import { Form,  Input,  Row, Col,  Checkbox,  Button,  message,} from 'antd';
 import { useState } from "react";
 // import {setVerifyCode, createUser} from "../api/User"
 import instance from "../api";
-import bcrypt from 'bcrypt';
 
 
 const Register = ( {setLoginOrRegister} ) => {
