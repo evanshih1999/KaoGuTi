@@ -41,7 +41,7 @@ function App() {
   }, [courseName]);
   
   useEffect(() => {
-    if (savedMe !== '') {
+    if (!savedMe) {
       setIsLogin(true);
     }
   }, []);
