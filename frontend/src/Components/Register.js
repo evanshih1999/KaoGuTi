@@ -239,11 +239,11 @@ const Register = ( {setLoginOrRegister} ) => {
 
         <Form.Item
           name="nickname"
-          label="暱稱"
+          label="使用者名稱"
           rules={[
             {
               required: true,
-              message: '請輸入您的暱稱!',
+              message: '請輸入您的使用者名稱!',
               whitespace: true,
             },
           ]}

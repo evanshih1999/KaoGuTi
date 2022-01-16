@@ -5,6 +5,7 @@ import moment from 'moment';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import instance from '../api';
 import Replyicon from './Replyicon';
+import AnswerDeleteIcon from './AnswerDeleteIcon';
 import MDEditor from '@uiw/react-md-editor';
 import katex from 'katex';
 import 'katex/dist/katex.css'
@@ -32,6 +33,7 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
 
     const [newReply, setNewReply] = useState(0)
     const [newLike, setNewLike] = useState(0)
+    const [deleteAnswer, setDeleteAnswer] = useState(0)
 
     useEffect(async () => {
 		let info = await handleProblem();
@@ -45,6 +47,20 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
         setAble_to_like(info.able_to_like);
         setTime(info.time);
 	}, [newReply, newLike]);
+
+
+    useEffect(async () => {
+		let info = await handleProblem();
+        setreplyList(info.answers);
+        setTitle(info.title);
+        setDescription(info.description);
+        setTeacher(info.teacher);
+        setPublisher(info.publisher);
+        setTags(info.tags);
+        setLikes_num(info.likes_num);
+        setAble_to_like(info.able_to_like);
+        setTime(info.time);
+	}, [deleteAnswer]);
 
 
     const handleProblem = async () => {
@@ -278,6 +294,12 @@ const ProblemModal = ({ item, isLogin, memberName }) => {
                                                 hideToolbar={true}
                                             />
                                             <Replyicon user_likes={reply.able_to_like} iconNum={reply.likes_num} memberName={memberName} answer_id={reply.answer_id} newLike={newLike} setNewLike={setNewLike}/>
+                                            {(reply.publisher === memberName) ?
+                                                <AnswerDeleteIcon memberName={memberName} answer_id={reply.answer_id} deleteAnswer={deleteAnswer} setDeleteAnswer={setDeleteAnswer}/>
+                                                :
+                                                null
+                                            }
+
                                         </>
                                     }
                                     datetime={

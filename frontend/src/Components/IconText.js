@@ -5,7 +5,7 @@ import instance from '../api';
 
 
 
-const IconText = ({ icon, user_likes, iconNum, memberName, problem_id }) => {
+const IconText = ({ icon, user_likes, iconNum, memberName, problem_id, deleteion, setDeletion }) => {
 
     if (icon != LikeOutlined) user_likes = true
 
@@ -53,6 +53,30 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id }) => {
         }
     }
 
+    const handleHideProblem = async () => {
+        try {
+            const {
+                data: { msg },
+            } = await instance.post('/hide/problem', {
+                username: memberName,
+                problem_id
+            });
+            console.log(msg);
+            displayStatus({
+				type: "success",
+				msg: msg,
+			});
+        }
+        catch (error) {
+            // console.error(error)
+            console.log(error.response.data.msg)
+            displayStatus({
+				type: "error",
+				msg: error.response.data.msg,
+			});
+        }
+    }
+    
     const pressButton = async () => {
 
         console.log('pressButton')
@@ -84,10 +108,11 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id }) => {
             // setshowModal(true)
             // onDeleteNotification()
             // setshowModal(false)
+            await handleHideProblem();
+            setDeletion(deleteion + 1);
         }
         if (icon == MessageOutlined) {
             // setpressColor(prev => !prev)
-
         }
         // setshowModal(prev => !prev)
 
@@ -95,9 +120,16 @@ const IconText = ({ icon, user_likes, iconNum, memberName, problem_id }) => {
 
     return (
         <Space >
-            <div style={pressColor ? { color: 'blue' } : null} >
-                {React.createElement(icon, { onClick: pressButton })}
-            </div>
+            {
+                (icon === MessageOutlined)?
+                    <div style={pressColor ? { color: 'blue' } : null} >
+                        {React.createElement(icon, { onClick: pressButton,  style: {pointerEvents: "none"} })}
+                    </div>
+                    :
+                    <div style={pressColor ? { color: 'blue' } : null} >
+                        {React.createElement(icon, { onClick: pressButton })}
+                    </div>
+            }
             {showText}
         </Space >
     );

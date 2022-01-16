@@ -15,13 +15,36 @@ import CreateProblem from "./Container/CreateProblem";
 
 import Cookie from "js.cookie";
 
+const LOCALSTORAGE_KEY = "save-me";
+const LOCALSTORAGE_KEY_COURSE = "save-course";
+
 function App() {
 
+  const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
+  const savedCourse = localStorage.getItem(LOCALSTORAGE_KEY_COURSE);
   const [isLogin, setIsLogin] = useState(false);
-  const [memberName, setMemberName] = useState('');
-  const [courseName, setCourseName] = useState('');
+  const [memberName, setMemberName] = useState(savedMe || '');
+  const [courseName, setCourseName] = useState(savedCourse || '');
   const [memberMail, setMemberMail] = useState("");
 
+  useEffect(() => {
+    if (isLogin) {
+      localStorage.setItem(LOCALSTORAGE_KEY, memberName);
+    }
+    else {
+      localStorage.setItem(LOCALSTORAGE_KEY, '');
+    }
+  }, [isLogin, memberName]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_KEY_COURSE, courseName);
+  }, [courseName]);
+  
+  useEffect(() => {
+    if (savedMe !== '') {
+      setIsLogin(true);
+    }
+  }, []);
 
   return (
     <div className="App">
