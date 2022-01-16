@@ -71,7 +71,7 @@ const Login = ({ setMemberName, setIsLogin, setLoginOrRegister, setMemberMail, i
                     username,
                     password: hash
                 });
-                // console.log(msg);
+                setMemberName(username)
 				return msg;
             }
             catch (error) {
