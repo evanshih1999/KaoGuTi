@@ -212,7 +212,8 @@ router.post('/create/answer', async (req, res) => {
     const problem = await Problem.findOne({ problem_id: problem_id })
     const problem_publisher = problem.publisher
     if (problem_publisher!==username) {
-        const email = await User.findOne({ username: problem_publisher }).email
+        const email = (await User.findOne({ username: problem_publisher })).email
+        console.log(email)
     
         var transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
