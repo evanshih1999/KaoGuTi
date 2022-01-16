@@ -20,7 +20,7 @@ const LOCALSTORAGE_KEY_COURSE = "save-course";
 
 function App() {
 
-  const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
+  const savedMe = localStorage.getItem(LOCALSTORAGE_KEY)||'';
   const savedCourse = localStorage.getItem(LOCALSTORAGE_KEY_COURSE);
   const [isLogin, setIsLogin] = useState(false);
   const [memberName, setMemberName] = useState(savedMe || '');
