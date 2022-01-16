@@ -208,6 +208,41 @@ router.post('/create/answer', async (req, res) => {
         await newAnswer.save()
         res.json({msg: 'Answer created'})
     } catch (e) { throw new Error("Answer creation error")}
+
+    const problem = await Problem.findOne({ problem_id: problem_id })
+    const problem_publisher = problem.publisher
+    if (problem_publisher!==username) {
+        const email = await User.findOne({ username: problem_publisher }).email
+    
+        var transporter = nodemailer.createTransport({
+            service: process.env.EMAIL_SERVICE,
+            auth: {
+              user: process.env.EMAIL_ADDRESS,
+              pass: process.env.EMAIL_PASSWORD
+            }
+        })
+          
+        var mailOptions = {
+            from: process.env.EMAIL_ADDRESS,
+            to: email,
+            subject: 'KaoGuTi Website Notification',
+            text: 'Dear ' + problem_publisher + ',\nYour problem ' + problem.title + 
+                ' has received a new answer from ' + username + 
+                '!\nYou can check it on our website at https://kaoguti.herokuapp.com/. \nIn case of any problem,\ncontact us via ' + 
+                process.env.EMAIL_ADDRESS + '\nThank you for the support!\n' + problem_publisher + 
+                '先生/小姐您好\n您的問題' + problem.title + '獲得了' + username + 
+                '的一則答覆\n您可以在我們的網站 https://kaoguti.herokuapp.com/ 上查看\n有任何問題，\n請透過' + 
+                process.env.EMAIL_ADDRESS + '與我們聯絡。\n謝謝您的支持!'
+        }
+          
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+        })
+    }
 })
 
 router.get('/search', async (req, res) => {

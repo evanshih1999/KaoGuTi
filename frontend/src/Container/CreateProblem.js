@@ -22,7 +22,7 @@ c = \\pm\\sqrt{a^2 + b^2}
 `;
 
 
-export default function CreateProblem({courseName, username, isLogin}) {
+export default function CreateProblem({courseName, username, isLogin, setCourseName}) {
     const [summitCourseName, setSummitCourseName] = useState(courseName)
     const [title, setTitle] = useState("")
     const [teacher, setTeacher] = useState("")
@@ -65,6 +65,7 @@ export default function CreateProblem({courseName, username, isLogin}) {
                     tags
                 });
                 console.log(msg);
+                setCourseName(setSummitCourseName)
                 displayStatus({
                     type: "success",
                     msg: msg,
