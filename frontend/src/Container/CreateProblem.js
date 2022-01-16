@@ -52,7 +52,7 @@ export default function CreateProblem({courseName, username, isLogin, setCourseN
 
     const handleCreateProblem = async () => {
         if (title.length > 0 && content.length > 0) {
-            setCourseName(setSummitCourseName)
+            setCourseName(summitCourseName)
             try {
                 const {
                     data: { msg },
