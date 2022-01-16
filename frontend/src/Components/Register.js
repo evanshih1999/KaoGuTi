@@ -186,14 +186,6 @@ const Register = ( {setLoginOrRegister} ) => {
               required: true,
               message: '請輸入您的email!',
             },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('email').indexOf("@ntu.edu.tw") !== -1) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('請使用台大信箱註冊!'));
-              },
-            })
           ]}
         >
           <Input onChange={onChangeEmail}/>
